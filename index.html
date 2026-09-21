@@ -1,161 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Telegram Channel</title>
 
-<title>Trading Community</title>
+    <!-- Meta Pixel Base Code Start -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      
+      // ⚠️ यहाँ 'YOUR_PIXEL_ID' को अपने असली Facebook Pixel ID से बदलें
+      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+           src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- Meta Pixel Base Code End -->
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}
-(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
-fbq('init', '2027397264819185');
-fbq('track', 'PageView');
-fbq('track', 'ViewContent');
-</script>
+        body {
+            background: linear-gradient(180deg, #1b134d 0%, #301752 40%, #80091b 100%);
+            color: #ffffff;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
 
-<style>
-body{
-margin:0;
-font-family:Arial;
-text-align:center;
-color:white;
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-}
+        .wrapper {
+            width: 100%;
+            max-width: 480px;
+            padding-bottom: 30px;
+        }
 
-/* TOP BAR */
-.topbar{
-background:#ffd700;
-color:#000;
-padding:12px;
-font-weight:900;
-font-size:17px;
-}
+        .top-banner {
+            background-color: #ffcc00;
+            color: #000000;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 12px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-/* PROFILE */
-.profile{
-margin-top:25px;
-}
-.profile img{
-width:130px;
-height:130px;
-border-radius:50%;
-border:5px solid #ffd700;
-}
+        .profile-wrapper {
+            margin: 25px auto 15px auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #ffcc00;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+        }
 
-/* TEXT */
-.title{
-font-size:24px;
-font-weight:900;
-margin-top:10px;
-color:#ffd700;
-}
-.subtitle{
-font-size:16px;
-font-weight:700;
-}
-.counter{
-margin-top:8px;
-font-weight:700;
-}
+        .profile-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-/* BOX */
-.box{
-background:rgba(0,0,0,0.4);
-margin:12px 20px;
-padding:12px;
-border-radius:10px;
-font-weight:700;
-}
+        .title {
+            color: #ffcc00;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            padding: 0 10px;
+        }
 
-/* BUTTON */
-.join-btn{
-background:#ffd700;
-color:#000;
-padding:16px;
-margin:20px;
-border-radius:12px;
-font-size:18px;
-font-weight:900;
-cursor:pointer;
-animation:pulse 1.5s infinite;
-}
+        .description {
+            color: #ffff00;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.4;
+            padding: 0 15px;
+            margin-bottom: 15px;
+        }
 
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.05)}
-100%{transform:scale(1)}
-}
+        .sub-text {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
 
-/* ADS */
-.ads{
-margin:20px 0;
-}
-.ads a{
-background:black;
-color:#ffd700;
-padding:10px 18px;
-border-radius:20px;
-text-decoration:none;
-font-size:13px;
-}
+        .users-count {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
 
-/* DISCLAIMER */
-.disclaimer{
-background:#000;
-color:#ccc;
-font-size:12px;
-padding:14px;
-line-height:1.6;
-}
-</style>
+        .info-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            color: #000000;
+            width: 88%;
+            margin: 10px auto;
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 17px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .redirect-status {
+            color: #ffcc00;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 20px 0 15px 0;
+        }
+
+        .cta-btn {
+            display: block;
+            width: 88%;
+            margin: 0 auto;
+            background-color: #ffcc00;
+            color: #000000;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="profile">
-<img src="profile.jpg" alt="Profile">
-</div>
+    <div class="wrapper">
+        <div class="top-banner">JOIN TELEGRAM CHANNEL</div>
 
-<div class="title">Trade With Mohit Agrawal</div>
-<div class="subtitle">Market Insights & Learning</div>
-<div class="counter">👥 2,300+ traders joined today</div>
+        <div class="profile-wrapper">
+            <img src="YOUR_IMAGE_LINK.jpg" alt="Profile Logo">
+        </div>
 
-<div class="box">📊 Market Analysis & Learning</div>
-<div class="box">📈 Intraday & Options Discussion</div>
-<div class="box">📚 14+ Years Market Experience</div>
+        <div class="title">👑 GURU BHAI SATTA KING ™</div>
 
-<div class="join-btn" id="joinBtn">JOIN TELEGRAM CHANNEL</div>
+        <div class="description">
+            डेली सिंगल जोड़ी रोजाना आपको इस टेलीग्राम पर फ्री मिलेगी ख़बर सबसे पहले मिलेगी टेलीग्राम चैनल ज्वाइन करो गेम मिलेंगे 👑
+        </div>
 
-<div class="ads">
-<a href="https://t.me/+GZeKfXdd9lIxZTJl">Advertised by elitemarketing.tech</a>
-</div>
+        <div class="sub-text">⚡ ALL MATKA GAMES AVAILABLE ⚡ Best Expert</div>
+        <div class="users-count">👥 20k+ users joined</div>
 
-<script>
-const tgLink="https://t.me/+FbqZCLER6y4zYTBl";
+        <!-- Clickable Cards -->
+        <a href="javascript:void(0);" onclick="trackButtonClick()" class="info-card tg-btn">
+            🤝 💎 गाजियाबाद फरीदाबाद 💎
+        </a>
 
-document.getElementById("joinBtn").addEventListener("click",function(){
-fbq('track','Lead',{ value:10, currency:'INR' });
-window.location.href = tgLink;
-});
-</script>
+        <a href="javascript:void(0);" onclick="trackButtonClick()" class="info-card tg-btn">
+            🤝 💎 गली , दिसावर 💎
+        </a>
 
-<div class="disclaimer">
-<strong>Disclaimer:</strong><br>
-This community is for educational and informational purposes only.
-We do not provide financial or investment advice.
-Trading in financial markets involves risk.
-Always consult a qualified financial advisor before making any investment decisions.
-</div>
+        <a href="javascript:void(0);" onclick="trackButtonClick()" class="info-card tg-btn">
+            📚 1001% FIX GAME MILEGA
+        </a>
 
+        <div class="redirect-status">
+            Redirecting in <span id="timer">3</span>...
+        </div>
+
+        <!-- Main Button -->
+        <a href="javascript:void(0);" id="telegramLink" onclick="trackButtonClick()" class="cta-btn tg-btn">
+            JOIN TELEGRAM CHANNEL
+        </a>
+    </div>
+
+    <!-- Tracking and Redirect Script -->
+    <script>
+        var isClicked = false; 
+        var telegramUrl = "https://t.me/+yM6lBH3LorFkNGQ1"; 
+
+        function trackButtonClick() {
+            if (!isClicked) {
+                isClicked = true; 
+
+                // केवल एक ही इवेंट 'TelegramBtnClick' फायर होगा
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'TelegramBtnClick'); 
+                }
+
+                // बटन डिसेबल करने का कोड
+                var btns = document.querySelectorAll('.tg-btn');
+                btns.forEach(function(btn) {
+                    btn.style.pointerEvents = 'none'; 
+                    btn.style.opacity = '0.7';       
+                });
+
+                // 300ms के बाद रीडायरेक्ट
+                setTimeout(function() {
+                    window.location.href = telegramUrl;
+                }, 300);
+            }
+        }
+
+        // ऑटो-रीडायरेक्ट टाइमर (3 सेकंड)
+        let timeLeft = 3;
+        const timerElement = document.getElementById('timer');
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            if (timerElement) timerElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                trackButtonClick(); 
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
