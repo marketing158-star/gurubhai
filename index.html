@@ -16,7 +16,7 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     
-    // अपनी Meta Pixel ID यहाँ 'YOUR_PIXEL_ID' की जगह डालें
+    // Apni Meta Pixel ID yahan 'YOUR_PIXEL_ID' ki jagah dalein
     fbq('init', 'YOUR_PIXEL_ID');
     fbq('track', 'PageView');
     </script>
@@ -129,13 +129,13 @@
 <body>
 
     <div class="container">
-        <!-- प्रोफ़ाइल फोटो (profile.png सेट कर दिया गया है) -->
+        <!-- Profile photo -->
         <img src="profile.png" alt="Profile" class="profile-img">
 
-        <!-- मुख्य हेडिंग -->
+        <!-- Heading -->
         <h1>👑 बाज़ीगर भाई ❤(( SATTA KING ))</h1>
 
-        <!-- डिस्क्रिप्शन -->
+        <!-- Description -->
         <p class="sub-text">
             डेली सिंगल जोड़ी रोजाना आपको इस टेलीग्राम पर फ्री मिलेगी ख़बर सबसे पहले मिलेगी टेलीग्राम चैनल ज्वाइन करो गेम मिलेंगे 👑
         </p>
@@ -143,24 +143,23 @@
         <div class="badge-text">⚡ ALL MATKA GAMES AVAILABLE ⚡ Best Expert</div>
         <div class="users-count">👥 40k+ users joined</div>
 
-        <!-- फीचर्स लिस्ट -->
+        <!-- Features list -->
         <div class="info-btn">🤝 💎फरीदाबाद, गाजियाबाद 💎</div>
         <div class="info-btn">🤝 💎 गली , दिसावर 💎</div>
         <div class="info-btn">📚 1001% FIX GAME MILEGA</div>
 
-        <!-- टेलीग्राम बटन -->
+        <!-- Telegram Button -->
         <button id="telegramLink" class="cta-btn" onclick="trackButtonClick()">JOIN TELEGRAM CHANNEL</button>
 
-        <!-- टाइमर (अब बटन के नीचे शिफ्ट कर दिया गया है) -->
+        <!-- Timer -->
         <div class="timer-text" id="timer">Redirecting in 30...</div>
 
-        <!-- Managed by elite marketing -->
+        <!-- Footer -->
         <div class="footer-text">Managed by <span>elite marketing</span></div>
     </div>
 
     <script>
         var isClicked = false;
-        // नया टेलीग्राम लिंक
         var telegramUrl = "https://t.me/+we1VmotMbCFmMzE1"; 
         var pageLoadTime = Date.now();
 
@@ -172,7 +171,7 @@
             var currentTime = Date.now();
             var timeSpent = (currentTime - pageLoadTime) / 1000;
 
-            // फेक/बॉट क्लिक रोकने के लिए सुरक्षा (0.8s से कम समय में क्लिक करने पर केवल रीडायरेक्ट)
+            // Bot check (0.8s se kam me redirect bina pixel fire kiye)
             if (timeSpent < 0.8) {
                 window.location.href = telegramUrl;
                 return;
@@ -201,7 +200,7 @@
             }
         }
 
-        // रिवर्स टाइमर (30 सेकंड)
+        // Reverse Timer with Auto Redirect
         var timeLeft = 30;
         var timerElement = document.getElementById('timer');
         var countdown = setInterval(function() {
@@ -210,7 +209,9 @@
                 timerElement.innerText = "Redirecting in " + timeLeft + "...";
             } else {
                 clearInterval(countdown);
-                timerElement.innerText = "Click Above to Join!";
+                timerElement.innerText = "Redirecting now...";
+                // 30 Seconds khatam hote hi auto-redirect trigger hoga
+                trackButtonClick();
             }
         }, 1000);
     </script>
