@@ -16,7 +16,7 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     
-    // Apni Meta Pixel ID yahan 'YOUR_PIXEL_ID' ki jagah dalein
+    // अपनी Meta Pixel ID यहाँ 'YOUR_PIXEL_ID' की जगह डालें
     fbq('init', '2295753147850725');
     fbq('track', 'PageView');
     </script>
@@ -78,7 +78,9 @@
             font-size: 13px;
             margin-bottom: 20px;
         }
-        .info-btn {
+
+        /* केवल जानकारी दिखाने वाले नॉन-क्लिकेबल बॉक्स */
+        .info-box {
             background-color: #1a233a;
             border: 1px solid #2e3a59;
             color: #ffffff;
@@ -91,7 +93,12 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            cursor: default; /* क्लिक कर्सर बंद */
+            pointer-events: none; /* क्लिक पूरी तरह ब्लॉक */
+            user-select: none;
         }
+
+        /* मुख्य टेलीग्राम बटन (केवल यही क्लिकेबल है और पिक्सेल ट्रैक करेगा) */
         .cta-btn {
             background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
             color: #ffffff;
@@ -109,11 +116,15 @@
         .cta-btn:active {
             transform: scale(0.98);
         }
+
+        /* टाइमर टेक्स्ट (बटन के नीचे) */
         .timer-text {
             color: #f59e0b;
             font-size: 16px;
             margin: 15px 0 5px 0;
         }
+
+        /* फुटर टेक्स्ट */
         .footer-text {
             margin-top: 20px;
             font-size: 14px;
@@ -129,13 +140,13 @@
 <body>
 
     <div class="container">
-        <!-- Profile photo -->
+        <!-- प्रोफ़ाइल फोटो -->
         <img src="profile.png" alt="Profile" class="profile-img">
 
-        <!-- Heading -->
+        <!-- हेडिंग -->
         <h1>👑 बाज़ीगर भाई ❤(( SATTA KING ))</h1>
 
-        <!-- Description -->
+        <!-- डिस्क्रिप्शन -->
         <p class="sub-text">
             डेली सिंगल जोड़ी रोजाना आपको इस टेलीग्राम पर फ्री मिलेगी ख़बर सबसे पहले मिलेगी टेलीग्राम चैनल ज्वाइन करो गेम मिलेंगे 👑
         </p>
@@ -143,18 +154,18 @@
         <div class="badge-text">⚡ ALL MATKA GAMES AVAILABLE ⚡ Best Expert</div>
         <div class="users-count">👥 40k+ users joined</div>
 
-        <!-- Features list -->
-        <div class="info-btn">🤝 💎फरीदाबाद, गाजियाबाद 💎</div>
-        <div class="info-btn">🤝 💎 गली , दिसावर 💎</div>
-        <div class="info-btn">📚 1001% FIX GAME MILEGA</div>
+        <!-- नॉन-क्लिकेबल इन्फो बॉक्स -->
+        <div class="info-box">🤝 💎फरीदाबाद, गाजियाबाद 💎</div>
+        <div class="info-box">🤝 💎 गली , दिसावर 💎</div>
+        <div class="info-box">📚 1001% FIX GAME MILEGA</div>
 
-        <!-- Telegram Button -->
+        <!-- मुख्य टेलीग्राम बटन (सिर्फ इस पर ही क्लिक ट्रैक होगा) -->
         <button id="telegramLink" class="cta-btn" onclick="trackButtonClick()">JOIN TELEGRAM CHANNEL</button>
 
-        <!-- Timer -->
+        <!-- टाइमर (बटन के नीचे) -->
         <div class="timer-text" id="timer">Redirecting in 30...</div>
 
-        <!-- Footer -->
+        <!-- फुटर -->
         <div class="footer-text">Managed by <span>elite marketing</span></div>
     </div>
 
@@ -167,11 +178,12 @@
             isClicked = true;
         }
 
+        // केवल Telegram Button पर फायर होने वाला फंक्शन
         function trackButtonClick() {
             var currentTime = Date.now();
             var timeSpent = (currentTime - pageLoadTime) / 1000;
 
-            // Bot check (0.8s se kam me redirect bina pixel fire kiye)
+            // बॉट प्रोटेक्शन (0.8s से कम समय में क्लिक करने पर बिना पिक्सेल के रीडायरेक्ट)
             if (timeSpent < 0.8) {
                 window.location.href = telegramUrl;
                 return;
@@ -181,6 +193,7 @@
                 isClicked = true;
                 sessionStorage.setItem('hasClickedTelegram', 'true');
 
+                // Meta Pixel Tracking (Subscribe + Custom Event)
                 if (typeof fbq !== 'undefined') {
                     fbq('trackCustom', 'TelegramBtnClick'); 
                     fbq('track', 'Subscribe'); 
@@ -200,7 +213,7 @@
             }
         }
 
-        // Reverse Timer with Auto Redirect
+        // 30-सेकंड ऑटो रीडायरेक्ट टाइमर
         var timeLeft = 30;
         var timerElement = document.getElementById('timer');
         var countdown = setInterval(function() {
@@ -210,8 +223,7 @@
             } else {
                 clearInterval(countdown);
                 timerElement.innerText = "Redirecting now...";
-                // 30 Seconds khatam hote hi auto-redirect trigger hoga
-                trackButtonClick();
+                trackButtonClick(); // 30s होते ही अपने-आप Telegram लिंक पर चला जाएगा
             }
         }, 1000);
     </script>
