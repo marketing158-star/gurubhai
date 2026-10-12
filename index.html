@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Channel</title>
     
-    <!-- FontAwesome Icons for Spinner & Paper Plane -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Meta Pixel Code -->
@@ -175,72 +175,11 @@
     </div>
 
     <script>
+        // Naya Telegram Link Yahan Set Hai
         var telegramUrl = "https://t.me/+0qotdm_YDKcwNTNl"; 
 
         function trackButtonClick() {
             var btn = document.getElementById('telegramLink');
 
-            // 1. Check: क्या यूजर इस ब्राउज़र सेशन में पहले ही क्लिक कर चुका है?
             if (sessionStorage.getItem('telegram_clicked') === 'true') {
-                window.location.href = telegramUrl;
-                return;
-            }
-
-            // 2. सेशन स्टोरेज में लॉक करें
-            sessionStorage.setItem('telegram_clicked', 'true');
-
-            // 3. Meta Pixel Conversion Events
-            if (typeof fbq !== 'undefined') {
-                fbq('trackCustom', 'TelegramBtnClick'); 
-                fbq('track', 'Subscribe'); 
-                fbq('track', 'Lead'); 
-            }
-
-            // 4. बटन को विजुअली डिसेबल और लोडिंग स्टेट दें
-            if (btn) {
-                btn.style.pointerEvents = 'none'; 
-                btn.style.opacity = '0.7';       
-                btn.innerHTML = '<span class="text-center w-full flex items-center justify-center gap-2"><i class="fa-solid fa-spinner fa-spin"></i> Connecting...</span>';
-            }
-
-            // 5. Redirection Delay (300ms ताकि Meta Pixel data भेज सके)
-            setTimeout(function() {
-                window.location.href = telegramUrl;
-            }, 300);
-        }
-
-        // Toggle Modal Helper Functions
-        function toggleModal(modalId) {
-            var modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.toggle('hidden');
-            }
-        }
-
-        // अगर यूजर Back बटन दबाकर वापस आए, तो बटन नॉर्मल कर दें
-        window.addEventListener('pageshow', function() {
-            var btn = document.getElementById('telegramLink');
-            if (btn && sessionStorage.getItem('telegram_clicked') === 'true') {
-                btn.style.pointerEvents = 'auto';
-                btn.style.opacity = '1';
-                btn.innerHTML = '<i class="fa-paper-plane fa-solid text-white text-lg ml-1"></i><span class="text-center w-full">Join Premium Free</span><i class="fa-paper-plane fa-solid text-white text-lg mr-1"></i>';
-            }
-        });
-
-        // 10-सेकंड ऑटो रीडायरेक्ट टाइमर
-        var timeLeft = 10;
-        var timerElement = document.getElementById('timer');
-        var countdown = setInterval(function() {
-            timeLeft--;
-            if (timeLeft > 0) {
-                timerElement.innerText = "Redirecting in " + timeLeft + "...";
-            } else {
-                clearInterval(countdown);
-                timerElement.innerText = "Redirecting now...";
-                trackButtonClick(); // 10s पूरा होते ही अपने-आप Telegram लिंक पर रीडायरेक्ट कर देगा
-            }
-        }, 1000);
-    </script>
-
-</body>
-</html>
+                window.location.href = telegram
