@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Channel</title>
     
+    <!-- FontAwesome Icons for Spinner & Paper Plane -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -16,7 +19,6 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     
-    // अपनी Meta Pixel ID यहाँ 'YOUR_PIXEL_ID' की जगह डालें
     fbq('init', '29219882277604383');
     fbq('track', 'PageView');
     </script>
@@ -79,7 +81,6 @@
             margin-bottom: 20px;
         }
 
-        /* केवल जानकारी दिखाने वाले नॉन-क्लिकेबल बॉक्स */
         .info-box {
             background-color: #1a233a;
             border: 1px solid #2e3a59;
@@ -93,12 +94,11 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            cursor: default; /* क्लिक कर्सर बंद */
-            pointer-events: none; /* क्लिक पूरी तरह ब्लॉक */
+            cursor: default;
+            pointer-events: none;
             user-select: none;
         }
 
-        /* मुख्य टेलीग्राम बटन (केवल यही क्लिकेबल है और पिक्सेल ट्रैक करेगा) */
         .cta-btn {
             background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
             color: #ffffff;
@@ -112,19 +112,20 @@
             box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
             transition: all 0.2s ease;
             margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .cta-btn:active {
             transform: scale(0.98);
         }
 
-        /* टाइमर टेक्स्ट (बटन के नीचे) */
         .timer-text {
             color: #f59e0b;
             font-size: 16px;
             margin: 15px 0 5px 0;
         }
 
-        /* फुटर टेक्स्ट */
         .footer-text {
             margin-top: 20px;
             font-size: 14px;
@@ -140,7 +141,7 @@
 <body>
 
     <div class="container">
-        <!-- प्रोफ़ाइल फोटो -->
+        <!-- प्रोफ़ाइल फोटो -->
         <img src="profile.png" alt="Profile" class="profile-img">
 
         <!-- हेडिंग -->
@@ -159,10 +160,14 @@
         <div class="info-box">🤝 💎 गली , दिसावर 💎</div>
         <div class="info-box">📚 1001% FIX GAME MILEGA</div>
 
-        <!-- मुख्य टेलीग्राम बटन (सिर्फ इस पर ही क्लिक ट्रैक होगा) -->
-        <button id="telegramLink" class="cta-btn" onclick="trackButtonClick()">JOIN TELEGRAM CHANNEL</button>
+        <!-- मुख्य टेलीग्राम बटन -->
+        <button id="telegramLink" class="cta-btn" onclick="trackButtonClick()">
+            <i class="fa-paper-plane fa-solid text-white text-lg ml-1"></i>
+            <span class="text-center w-full">JOIN TELEGRAM CHANNEL</span>
+            <i class="fa-paper-plane fa-solid text-white text-lg mr-1"></i>
+        </button>
 
-        <!-- टाइमर (बटन के नीचे) -->
+        <!-- टाइमर -->
         <div class="timer-text" id="timer">Redirecting in 10...</div>
 
         <!-- फुटर -->
@@ -170,50 +175,59 @@
     </div>
 
     <script>
-        var isClicked = false;
-        var telegramUrl = "https://t.me/+OWF-xIzjB2U5MDhl"; 
-        var pageLoadTime = Date.now();
+        var telegramUrl = "https://t.me/+0qotdm_YDKcwNTNl"; 
 
-        if (sessionStorage.getItem('hasClickedTelegram')) {
-            isClicked = true;
-        }
-
-        // केवल Telegram Button पर फायर होने वाला फंक्शन
         function trackButtonClick() {
-            var currentTime = Date.now();
-            var timeSpent = (currentTime - pageLoadTime) / 1000;
+            var btn = document.getElementById('telegramLink');
 
-            // बॉट प्रोटेक्शन (0.8s से कम समय में क्लिक करने पर बिना पिक्सेल के रीडायरेक्ट)
-            if (timeSpent < 0.8) {
+            // 1. Check: क्या यूजर इस ब्राउज़र सेशन में पहले ही क्लिक कर चुका है?
+            if (sessionStorage.getItem('telegram_clicked') === 'true') {
                 window.location.href = telegramUrl;
                 return;
             }
 
-            if (!isClicked) {
-                isClicked = true;
-                sessionStorage.setItem('hasClickedTelegram', 'true');
+            // 2. सेशन स्टोरेज में लॉक करें
+            sessionStorage.setItem('telegram_clicked', 'true');
 
-                // Meta Pixel Tracking (Subscribe + Custom Event)
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'TelegramBtnClick'); 
-                    fbq('track', 'Subscribe'); 
-                }
+            // 3. Meta Pixel Conversion Events
+            if (typeof fbq !== 'undefined') {
+                fbq('trackCustom', 'TelegramBtnClick'); 
+                fbq('track', 'Subscribe'); 
+                fbq('track', 'Lead'); 
+            }
 
-                var btn = document.getElementById('telegramLink');
-                if (btn) {
-                    btn.style.pointerEvents = 'none';
-                    btn.style.opacity = '0.7';
-                }
+            // 4. बटन को विजुअली डिसेबल और लोडिंग स्टेट दें
+            if (btn) {
+                btn.style.pointerEvents = 'none'; 
+                btn.style.opacity = '0.7';       
+                btn.innerHTML = '<span class="text-center w-full flex items-center justify-center gap-2"><i class="fa-solid fa-spinner fa-spin"></i> Connecting...</span>';
+            }
 
-                setTimeout(function() {
-                    window.location.href = telegramUrl;
-                }, 300);
-            } else {
+            // 5. Redirection Delay (300ms ताकि Meta Pixel data भेज सके)
+            setTimeout(function() {
                 window.location.href = telegramUrl;
+            }, 300);
+        }
+
+        // Toggle Modal Helper Functions
+        function toggleModal(modalId) {
+            var modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.toggle('hidden');
             }
         }
 
-        // 30-सेकंड ऑटो रीडायरेक्ट टाइमर
+        // अगर यूजर Back बटन दबाकर वापस आए, तो बटन नॉर्मल कर दें
+        window.addEventListener('pageshow', function() {
+            var btn = document.getElementById('telegramLink');
+            if (btn && sessionStorage.getItem('telegram_clicked') === 'true') {
+                btn.style.pointerEvents = 'auto';
+                btn.style.opacity = '1';
+                btn.innerHTML = '<i class="fa-paper-plane fa-solid text-white text-lg ml-1"></i><span class="text-center w-full">Join Premium Free</span><i class="fa-paper-plane fa-solid text-white text-lg mr-1"></i>';
+            }
+        });
+
+        // 10-सेकंड ऑटो रीडायरेक्ट टाइमर
         var timeLeft = 10;
         var timerElement = document.getElementById('timer');
         var countdown = setInterval(function() {
@@ -223,7 +237,7 @@
             } else {
                 clearInterval(countdown);
                 timerElement.innerText = "Redirecting now...";
-                trackButtonClick(); // 30s होते ही अपने-आप Telegram लिंक पर चला जाएगा
+                trackButtonClick(); // 10s पूरा होते ही अपने-आप Telegram लिंक पर रीडायरेक्ट कर देगा
             }
         }, 1000);
     </script>
